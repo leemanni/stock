@@ -23,6 +23,7 @@
 	
 	<mappers>
 		<mapper resource="com/leemanni/mybatis/login.xml" />
+		<mapper resource="com/leemanni/mybatis/stocks.xml" />
 	</mappers>
 	
 </configuration>

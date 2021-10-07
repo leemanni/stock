@@ -1,4 +1,6 @@
 @charset "UTF-8";
+/* bootstarp */
+@import url("./bootstrap.css");
 @import url("./reset.css");
 /* screen  */
 @import url("./screen/loginmain.css");
@@ -8,5 +10,9 @@ body{
 	flex-direction: column;
 	justify-content: center;
 	align-content: center;
+}
+a{
+	color: black;
+	text-decoration: none;
 }
 
