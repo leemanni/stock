@@ -19,9 +19,9 @@ public class StocksDAO {
 	
 	
 	public boolean checkLogin(SqlSession mapper, LoginVO vo) {
-		System.out.println("StocksDAO ==> checkLogin");
+//		System.out.println("StocksDAO ==> checkLogin");
 		int correct = (int) mapper.selectOne("checkLogin", vo);
-		System.out.println(correct);
+//		System.out.println(correct);
 		return correct == 1 ? true : false; 
 	}
 }

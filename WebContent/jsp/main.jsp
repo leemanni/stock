@@ -21,7 +21,7 @@
 	
 	<%
 		boolean check = StocksService.getInstance().checkLogin(vo);
-		out.println(StocksService.getInstance().checkLogin(vo));
+		//out.println(StocksService.getInstance().checkLogin(vo));
 		if(check){
 			pageContext.forward("stocksView.jsp");
 		}else{

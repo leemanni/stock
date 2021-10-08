@@ -20,7 +20,7 @@ public class logInService {
 	}
 	
 	public boolean checkLogin(LoginVO vo) {
-		System.out.println("StocksService ==> checkLogin");
+//		System.out.println("StocksService ==> checkLogin");
 		SqlSession mapper = MySession.getSession();
 		boolean correct = StocksDAO.getInstance().checkLogin(mapper, vo);
 		mapper.close();

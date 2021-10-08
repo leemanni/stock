@@ -1,14 +1,5 @@
 @charset "UTF-8";
 
-body {
-	height: 100vh;
-	background-color: teal;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-content: center;
-	background-color: teal;
-}
 #login-error{
 	color: white;
 	font-weight: 800;

@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>나의 자산 이야기</title>
-<link rel="shortcut icon" href=".././images/money_icons/favicon.ico">
+<link rel="shortcut icon" href=".././images/coin.png">
 <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
@@ -44,16 +44,13 @@
 <footer class="footermain">
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-4">
+			<div class="col-sm-6">
 				<h5>copyright</h5>
 				<h5>&copy;leemanni(이원희)</h5>
 			</div>
-			<div class="col-sm-4">
+			<div class="col-sm-6">
 				<h5>github</h5>
 				<h5><a class="foot-a" href="https://github.com/leemanni"><i class="fab fa-github"></i>&nbsp;leemanni's github</a></h5>
-			</div>
-			<div class="col-sm-3">
-				<h5><span class="glyphicon glyphicon-ok"></span>&nbsp;by 이원희</h5>
 			</div>
 		</div>
 	</div>

@@ -1,0 +1,15 @@
+@charset "UTF-8";
+.navbar-inverse a{
+	color: var(--fontcolor);
+}
+
+.add-asset{
+	background-color: var(--backGround_color);
+	color: var(--fontcolor);
+	transition: all 0.5s;
+}
+.add-asset:hover,
+.add-asset:active{
+	background: var(--fontcolor);
+	color: var(--backGround_color);
+}
