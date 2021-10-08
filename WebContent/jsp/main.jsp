@@ -1,3 +1,4 @@
+<%@page import="com.leemanni.service.logInService"%>
 <%@page import="javax.swing.text.StyledEditorKit.BoldAction"%>
 <%@page import="com.leemanni.service.StocksService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -20,7 +21,7 @@
 	</jsp:useBean>
 	
 	<%
-		boolean check = StocksService.getInstance().checkLogin(vo);
+		boolean check = logInService.getInstance().checkLogin(vo);
 		//out.println(StocksService.getInstance().checkLogin(vo));
 		if(check){
 			pageContext.forward("stocksView.jsp");

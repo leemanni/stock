@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 #login-error{
-	color: white;
+	color: tomato;
 	font-weight: 800;
 }
 .login-header {

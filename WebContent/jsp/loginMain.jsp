@@ -15,7 +15,7 @@
 <div class="container">
 	<header class="login-header">
 		<c:set var="flag" value="${flag}"/>
-		<a href="?">
+		<a href="#">
 			<h1>당신임을 증명해주세요</h1>
 		</a>
 		<c:if test="${flag == null}">
@@ -57,8 +57,8 @@
 </footer>
 
 <script src="https://kit.fontawesome.com/27afa53023.js" crossorigin="anonymous"></script>
-<script type="text/javascript" src="../js/bootstrap.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.js"></script>
 <script type="text/javascript"src="../js/formCheck.js"></script>
 </body>
 </html>	 

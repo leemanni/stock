@@ -88,34 +88,33 @@
 
 
 <!-- 자산 추가 모달창 -->
-<div class="modal fade" id="addAsset__modal" role="dialog" aria-labelledby="exampleModalLabel">
+<div class="modal fade" id="addAsset__modal" role="dialog" aria-labelledby="modalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">
-					나의 자산 추가하기
-				</h4>
-				 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				 	<span aria-hidden="true">&times;</span>
 			 	</button>
+				<h4 class="modal-title" id="modalLabel">
+					나의 자산 추가하기
+				</h4>
 			</div>
-			<div class="modal-body">
-				<form action="">
-					<input type="text" class="form-control" name="name" placeholder="종목명"><br/>
-					<input type="text" class="form-control" name="ownStocks" placeholder="보유주식 수"><br/>
-					<input type="text" class="form-control" name="pPrice" placeholder="구매가"><br/>
-					<input type="text" class="form-control" name="cPrice" placeholder="현재가"><br/>
-					<input type="text" class="form-control" name="pRario" placeholder="종목명">
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button id="addAsset" type="button" class="btn btn-deafault add-asset">
-					자산추가
-				</button>
-				 <button type="button" class="btn btn-default" data-dismiss="modal">
-				 	Close
-			 	</button>
-			</div>
+			<form action="insertStock.jsp">
+				<div class="modal-body">
+						<input type="text" class="form-control" name="name" placeholder="종목명"><br/>
+						<input type="text" class="form-control" name="ownStocks" placeholder="보유주식 수"><br/>
+						<input type="text" class="form-control" name="pPrice" placeholder="구매가"><br/>
+						<input type="text" class="form-control" name="cPrice" placeholder="현재가"><br/>
+				</div>
+				<div class="modal-footer">
+					<button id="addAsset" type="submit" class="btn btn-deafault add-asset">
+						자산추가
+					</button>
+					 <button type="button" class="btn btn-default" data-dismiss="modal">
+					 	Close
+				 	</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
@@ -136,11 +135,6 @@
 		</div>
 	</div>
 </footer>
-
-<script type="text/javascript">
-	$('#messageModal').modal('show');	
-</script>
-
 
 <script src="https://kit.fontawesome.com/27afa53023.js" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
