@@ -33,9 +33,10 @@
 
 <div class="container">
 	<div class="pull-right">
-		<button type="button" class="btn btn-primary add-asset"
+		<button type="button" class="btn btn-default addAsset-submit"
 		 data-toggle="modal" data-target="#addAsset__modal">자산추가</button>
 	</div>
+	<span class="notice">종목 이름을 클릭하면 메모기능이 활성화 됩니다.</span>
 	<table class="table table-hover">
 		<thead>
 			<tr>
@@ -43,7 +44,10 @@
 					종목명
 				</th>
 				<th>
-					ex) 삼성전자
+					<a class="writeMemo" data-toggle="modal" data-target="#writeMemo__modal">
+						ex) 삼성전자
+					</a>
+					
 				</th>
 				<th >
 					수량
@@ -99,18 +103,18 @@
 					나의 자산 추가하기
 				</h4>
 			</div>
-			<form action="insertStock.jsp">
-				<div class="modal-body">
-						<input type="text" class="form-control" name="name" placeholder="종목명"><br/>
-						<input type="text" class="form-control" name="ownStocks" placeholder="보유주식 수"><br/>
-						<input type="text" class="form-control" name="pPrice" placeholder="구매가"><br/>
-						<input type="text" class="form-control" name="cPrice" placeholder="현재가"><br/>
+			<form action="stock.jsp" class="addAsset-form">
+				<div class="modal-body addAsset-form">
+						<input type="text" class="form-control" required="required" name="name" placeholder="종목명"><br/>
+						<input type="text" class="form-control" required="required" name="ownStocks" placeholder="보유주식 수"><br/>
+						<input type="text" class="form-control" required="required" name="pPrice" placeholder="구매가"><br/>
+						<input type="text" class="form-control" required="required" name="cPrice" placeholder="현재가"><br/>
 				</div>
 				<div class="modal-footer">
-					<button id="addAsset" type="submit" class="btn btn-deafault add-asset">
+					<button id="addAsset-submit" type="submit" class="btn btn-deafault addAsset-submit" >
 						자산추가
 					</button>
-					 <button type="button" class="btn btn-default" data-dismiss="modal">
+					 <button type="button" class="btn btn-default" data-dismiss="modal" onclick="clickClose()">
 					 	Close
 				 	</button>
 				</div>
@@ -119,7 +123,35 @@
 	</div>
 </div>
 
-
+<!-- 메모 추가 모달창 -->
+<div class="modal fade" id="writeMemo__modal" role="dialog" aria-labelledby="modalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				 	<span aria-hidden="true">&times;</span>
+			 	</button>
+				<h4 class="modal-title" id="modalLabel">
+					memo!
+				</h4>
+			</div>
+			<form action="memo.jsp" class="writeMemo-form">
+				<div class="modal-body">
+					<!-- 메모 작성하면 enter, <> 방지 하기 -->
+					<textarea rows="10" cols="30" class="form-control memo-textArea" name="memo"></textarea>
+				</div>
+				<div class="modal-footer">
+					<button id="addAsset" type="submit" class="btn btn-deafault add-asset writeMemo-submit" onclick="clickClose()">
+						메모작성
+					</button>
+					 <button type="button" class="btn btn-default" data-dismiss="modal"  onclick="clickClose()">
+					 	Close
+				 	</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 
 <footer class="footermain">
 	<div class="container">
@@ -139,5 +171,6 @@
 <script src="https://kit.fontawesome.com/27afa53023.js" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="../js/bootstrap.js"></script>
+<script type="text/javascript" src="../js/formCheck.js"></script>
 </body>
 </html>

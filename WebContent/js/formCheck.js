@@ -9,6 +9,19 @@ $(()=>{
 			$('#id').focus();
 		}
 	})
+	
+	$('.writeMemo-form').submit(function(e) {
+		const memo = $.trim($('.memo-textArea:eq(0)').val()).length;
+		alert(memo);
+		e.preventDefault();
+	})
+	
+	
 } )
+
+function clickClose() {
+	$('.addAsset-form')[0].reset();
+	$('.writeMemo-form textarea').val('');
+}
 
 

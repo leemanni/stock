@@ -3,13 +3,24 @@
 	color: var(--fontcolor);
 }
 
-.add-asset{
+.addAsset-submit,
+.writeMemo-submit{
 	background-color: var(--backGround_color);
 	color: var(--fontcolor);
 	transition: all 0.5s;
 }
-.add-asset:hover,
-.add-asset:active{
+.addAsset-submit:hover,
+.writeMemo-submit:hover,
+.addAsset-submit:active,
+.writeMemo-submit:active{
 	background: var(--fontcolor);
 	color: var(--backGround_color);
+}
+.writeMemo:hover,
+.writeMemo:active{
+	color: #6464ff;
+	cursor: pointer;
+}
+.memo-textArea{
+	resize: none;
 }
