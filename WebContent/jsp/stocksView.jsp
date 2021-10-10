@@ -105,7 +105,7 @@
 					나의 자산 추가하기
 				</h4>
 			</div>
-			<form action="stock.jsp?" class="addAsset-form" method="get">
+			<form action="stock.jsp?" class="addAsset-form" method="post">
 				<div class="modal-body addAsset-form">
 						<input type="text" class="form-control" required="required" name="name" placeholder="종목명"><br/>
 						<input type="text" class="form-control" required="required" name="ownStocks" placeholder="보유주식 수"><br/>
@@ -138,7 +138,7 @@
 					memo!
 				</h4>
 			</div>
-			<form action="memo.jsp" class="writeMemo-form">
+			<form action="memo.jsp" class="writeMemo-form" method="post">
 				<div class="modal-body">
 					<!-- 메모 작성하면 enter, <> 방지 하기 -->
 					<textarea rows="10" cols="30" class="form-control memo-textArea" name="memo"></textarea>

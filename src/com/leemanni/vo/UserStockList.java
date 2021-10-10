@@ -50,6 +50,17 @@ public class UserStockList {
 		}
 		totalRatio = (float)(totalAsset- p_totalAsset) / p_totalAsset;
 	}
+
+
+
+
+
+	@Override
+	public String toString() {
+		return "UserStockList [stockList=" + stockList + ", totalAsset=" + totalAsset + ", p_totalAsset=" + p_totalAsset
+				+ ", totalRatio=" + totalRatio + "]";
+	}
+	
 	
 	
 	

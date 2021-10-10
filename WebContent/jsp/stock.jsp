@@ -37,7 +37,7 @@
 			stockList.setStockList(service.selectList());
 			out.println(stockList.getStockList());
 			request.setAttribute("stockList", stockList);
-			response.sendRedirect("stocksView.jsp");
+			pageContext.forward("stocksView.jsp");
 			break;
 			
 		// 앞으로 수정, 삭제 기능 구현해!
