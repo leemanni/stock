@@ -7,6 +7,7 @@
 	
 	<typeAliases>
 		<typeAlias type="com.leemanni.vo.LoginVO" alias="logVO" />
+		<typeAlias type="com.leemanni.vo.UserStocksVO" alias="vo" />
 	</typeAliases>
 	
 	<environments default="development">

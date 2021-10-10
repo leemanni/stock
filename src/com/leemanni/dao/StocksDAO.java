@@ -1,8 +1,11 @@
 package com.leemanni.dao;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.leemanni.vo.LoginVO;
+import com.leemanni.vo.UserStocksVO;
 
 /**
  * @author cjffy
@@ -18,10 +21,29 @@ public class StocksDAO {
 	}
 	
 	
+	/**
+	 * @param mapper
+	 * @param vo
+	 * @return
+	 * 
+	 * @from logInService
+	 * 사용자id pw 일치여부 확인
+	 * 
+	 */
 	public boolean checkLogin(SqlSession mapper, LoginVO vo) {
 //		System.out.println("StocksDAO ==> checkLogin");
 		int correct = (int) mapper.selectOne("checkLogin", vo);
 //		System.out.println(correct);
 		return correct == 1 ? true : false; 
+	}
+	
+	public void insert(SqlSession mapper, UserStocksVO vo) {
+//		System.out.println("StocksDAO ==> insert");
+		mapper.insert("insert", vo);
+	}
+	
+	
+	public ArrayList<UserStocksVO> selectList(SqlSession mapper) {
+		return (ArrayList<UserStocksVO>) mapper.selectList("selectList");
 	}
 }

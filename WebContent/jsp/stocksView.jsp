@@ -1,3 +1,5 @@
+<%@page import="com.leemanni.vo.UserStocksVO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>		
@@ -9,9 +11,7 @@
 <link rel="shortcut icon" href=".././images/coin.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="../css/styles.css">
-
 <title>나의 자산이야기-My Asset</title>
-
 </head>
 <body>
 
@@ -37,6 +37,8 @@
 		 data-toggle="modal" data-target="#addAsset__modal">자산추가</button>
 	</div>
 	<span class="notice">종목 이름을 클릭하면 메모기능이 활성화 됩니다.</span>
+	<c:set var="stocksList" value="${stockList.stockList}"></c:set>
+	${stockList}
 	<table class="table table-hover">
 		<thead>
 			<tr>
@@ -103,12 +105,13 @@
 					나의 자산 추가하기
 				</h4>
 			</div>
-			<form action="stock.jsp" class="addAsset-form">
+			<form action="stock.jsp?" class="addAsset-form" method="get">
 				<div class="modal-body addAsset-form">
 						<input type="text" class="form-control" required="required" name="name" placeholder="종목명"><br/>
 						<input type="text" class="form-control" required="required" name="ownStocks" placeholder="보유주식 수"><br/>
 						<input type="text" class="form-control" required="required" name="pPrice" placeholder="구매가"><br/>
 						<input type="text" class="form-control" required="required" name="cPrice" placeholder="현재가"><br/>
+						<input type="hidden" name="job" value="insert">
 				</div>
 				<div class="modal-footer">
 					<button id="addAsset-submit" type="submit" class="btn btn-deafault addAsset-submit" >

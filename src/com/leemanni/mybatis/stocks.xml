@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.leemanni.vo.LoginVO">
+<mapper namespace="com.leemanni.vo.UserStocksVO">
+	<insert id="insert" parameterType="vo">
+		insert into userstocks(name, ownStocks, p_price, c_price)
+		values(#{name}, #{ownStocks}, #{p_price}, #{c_price})
+	</insert>
 	
+	<select id="selectList" resultType="vo">
+		select * from userstocks order by name asc
+	</select>
 </mapper>
 
 

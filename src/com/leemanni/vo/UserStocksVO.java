@@ -11,6 +11,7 @@ public class UserStocksVO {
 	private int c_price;	// 현재 가격
 	private float ratio;		// 수익률(DB x)
 	private int totalPrice;	// 자산가치(DB x)
+	private int p_totalPrice;	// 자산가치(DB x)
 	
 	
 	public UserStocksVO() {;}
@@ -32,6 +33,7 @@ public class UserStocksVO {
 	 */
 	private void calculate(int ownStocks, int p_price, int c_price) {
 		totalPrice = ownStocks * c_price;
+		p_totalPrice = ownStocks * p_price;
 		ratio = (float)(c_price - p_price) / p_price;
 	}
 
@@ -93,6 +95,16 @@ public class UserStocksVO {
 
 	public void setTotaPrice(int totaPrice) {
 		this.totalPrice = totaPrice;
+	}
+
+
+	public int getP_totalPrice() {
+		return p_totalPrice;
+	}
+
+
+	public void setP_totalPrice(int p_totalPrice) {
+		this.p_totalPrice = p_totalPrice;
 	}
 
 
