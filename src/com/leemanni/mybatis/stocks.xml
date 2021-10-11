@@ -14,6 +14,15 @@
 		delete from userstocks where name = #{name}
 	</delete>
 	
+	<select id="getVO" parameterType="String" resultType="vo">
+		select * from userstocks where name = #{name}
+	</select>
+	
+	<update id="update" parameterType="vo">
+		update userstocks set ownStocks = #{ownStocks} , p_price = #{p_price}, c_price= #{c_price}
+		where name = #{name}
+	</update>
+	
 </mapper>
 
 

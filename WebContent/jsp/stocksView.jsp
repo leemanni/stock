@@ -32,14 +32,25 @@
 
 
 <div class="container">
-	<span class="notice">종목 이름을 클릭하면 메모기능이 활성화 됩니다.</span>
 	<div class="pull-right add-button">
 		<button type="button" class="btn btn-default addAsset-submit"
 		 data-toggle="modal" data-target="#addAsset__modal">자산추가</button>
 	</div>
+	<div class="row total-asset">
+		<div class="col-sm-2">
+			<h5>당신의 총 자산</h5>
+			<h5>₩ <fmt:formatNumber type="number" maxFractionDigits="3" value="${stockList.totalAsset }"/></h5>
+		</div>
+		<div class="col-sm-2">
+			<h5>당신의 수익률</h5>
+			<h5><fmt:formatNumber type="percent" minIntegerDigits="1" pattern="###.00%" value="${stockList.totalRatio}"/></h5>
+		</div>
+	</div>
+	<span class="notice">종목 이름을 클릭하면 메모기능이 활성화 됩니다.</span>
 	<c:set var="list" value="${stockList.stockList}"/>
 	<c:if test="${list.size() > 0}">
 		<c:forEach var="vo" items="${list}">
+			<c:if test="${stock.name!=vo.name}">
 			<table class="table table-hover assetTable">
 				<thead>
 					<tr>
@@ -70,7 +81,7 @@
 							<fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.totalPrice}"/>
 						</td>
 						<td>
-							구매가
+							구매가 (평단가)
 						</td>
 						<td>
 							₩ 
@@ -99,16 +110,85 @@
 				</tbody>
 			</table>
 			<div class="pull-right edit-buttons">
-				<button  type="button" class="btn btn-default update-btn" >수정</button>
-				<button  type="button" class="btn btn-default delete-btn" onclick="deleteFuntion('${vo.name}')">삭제</button>
+				<button type="button" data-toggle="modal" data-target="#updateAsset__modal"
+				 class="btn btn-default update-btn" onclick="updateFunction('${vo.name}')">수정</button>
+				<button type="button"class="btn btn-default delete-btn" onclick="deleteFuntion('${vo.name}')">
+					삭제
+				 </button>
 			</div>
+			</c:if>
+			<!-- 자산 수정 -->
+			<c:if test="${stock.name==vo.name}">
+				<form action="stock.jsp" class="updateAsset-form" method="post">
+					<table class="table table-hover updateTable">
+						<thead>
+							<tr>
+								<th>
+									종목명
+								</th>
+								<th>
+									<a class="writeMemo" data-toggle="modal" data-target="#writeMemo__modal">
+										${vo.name}
+									</a>
+									
+								</th>
+								<th >
+									수량
+								</th>
+								<th>
+									<fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.ownStocks}"/>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="2">
+									보유 주식 수
+								</td>
+								<td colspan="2">
+									<input type="text" class="form-control" required="required"
+									 name="ownStocks" value="${stock.ownStocks }">
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									구매 가격 (평단가)
+								</td>
+								<td colspan="2">
+									<input type="text" class="form-control" required="required"
+									 name="pPrice" value="${stock.p_price}">
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									현재 가격
+								</td>
+								<td colspan="2">
+									<input type="text" class="form-control" required="required"
+									 name="cPrice" value="${stock.c_price}">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="pull-right">
+						<button id="addAsset" type="submit" class="btn btn-deafault add-asset">
+							수정완료
+						</button>
+						 <button type="button" class="btn btn-default"  onclick="history.back()">
+						 	취소
+					 	</button>
+						<input type="hidden" name="job" value="update">
+						<input type="hidden" name="name" value="${stock.name}">
+					</div>
+				</form>
+			</c:if>
 		</c:forEach>
 	</c:if>
 	<c:if test="${list.size() <= 0}">
 	<div>
 		<h1>
 			현재 저장된 자산이 없습니다. <br/>
-			자산을 새롭게 추가해보기는게 어떠세요?
+			자산을 새롭게 추가해보시는 게 어떠세요?
 		</h1>
 	</div>
 	</c:if>
@@ -167,6 +247,46 @@
 					<textarea rows="10" cols="30" class="form-control memo-textArea" name="memo"></textarea>
 				</div>
 				<div class="modal-footer">
+					<button id="addAsset" type="submit" class="btn btn-deafault add-asset updateAsset-submit" onclick="clickClose()">
+						수정
+					</button>
+					 <button type="button" class="btn btn-default" data-dismiss="modal"  onclick="clickClose()">
+					 	Close
+				 	</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- 수정 모달창 -->
+<%-- <div class="modal fade" id="updateAsset__modal" role="dialog" aria-labelledby="modalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				 	<span aria-hidden="true">&times;</span>
+			 	</button>
+				<h4 class="modal-title" id="modalLabel">
+					자산 수정하기
+				</h4>
+			</div>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<td>
+							name
+						</td>
+					</tr>
+				</thead>
+			</table>
+			<form action="stock.jsp" class="updateAsset-form" method="post">
+				<div class="modal-body">
+					<input type="text" class="form-control" required="required" name="ownStocks" value="${stock.ownStocks }"><br/>
+					<input type="text" class="form-control" required="required" name="pPrice" placeholder="구매가"><br/>
+					<input type="text" class="form-control" required="required" name="cPrice" placeholder="현재가"><br/>
+					<input type="hidden" name="job" value="insert">
+				</div>
+				<div class="modal-footer">
 					<button id="addAsset" type="submit" class="btn btn-deafault add-asset writeMemo-submit" onclick="clickClose()">
 						메모작성
 					</button>
@@ -177,8 +297,7 @@
 			</form>
 		</div>
 	</div>
-</div>
-
+</div> --%>
 <footer class="footermain">
 	<div class="container">
 		<div class="row">

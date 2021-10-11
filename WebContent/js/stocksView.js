@@ -22,3 +22,8 @@ function deleteFuntion(obj) {
 	const name = obj;
 	location.href = '../jsp/stock.jsp?job=delete&name='+encodeURIComponent(name);
 }
+
+function updateFunction(obj) {
+//	console.log(obj);
+	location.href = '../jsp/stock.jsp?job=show&name='+obj;
+}

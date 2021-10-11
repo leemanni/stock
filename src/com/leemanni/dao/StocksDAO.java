@@ -33,7 +33,7 @@ public class StocksDAO {
 	public boolean checkLogin(SqlSession mapper, LoginVO vo) {
 //		System.out.println("StocksDAO ==> checkLogin");
 		int correct = (int) mapper.selectOne("checkLogin", vo);
-//		System.out.println(correct);
+		System.out.println(correct);
 		return correct == 1 ? true : false; 
 	}
 	
@@ -58,8 +58,25 @@ public class StocksDAO {
 	 * 선택된 주식 1건을 삭제하는 메소드
 	 */
 	public void delete(SqlSession mapper, String name) {
-		System.out.println("StocksDAO==>delete");
+//		System.out.println("StocksDAO==>delete");
 		mapper.delete("delete", name);
+	}
+	
+	
+	/**
+	 * @param mapper
+	 * @param name
+	 * 선택된 주식 1건을 가져옴
+	 * @return 
+	 */
+	public UserStocksVO getVO(SqlSession mapper, String name) {
+//		System.out.println("StocksDAO ==> getVO");
+		return (UserStocksVO) mapper.selectOne("getVO", name);
+	}
+	
+	
+	public void update(SqlSession mapper, UserStocksVO vo) {
+		mapper.update("update", vo);
 	}
 }
 

@@ -6,15 +6,18 @@
 	margin-bottom: 5px;
 }
 .addAsset-submit,
-.writeMemo-submit{
+.writeMemo-submit,
+.updateAsset-submit{
 	background-color: var(--backGround_color);
 	color: var(--fontcolor);
 	transition: all 0.5s;
 }
 .addAsset-submit:hover,
 .writeMemo-submit:hover,
+.updateAsset-submit:hover,
 .addAsset-submit:active,
-.writeMemo-submit:active{
+.writeMemo-submit:active,
+.updateAsset-submit:active{
 	background: var(--fontcolor);
 	color: var(--backGround_color);
 }
@@ -30,8 +33,17 @@
 	align: left;
 	width: 30%;
 }
-.assetTable th{
+.assetTable th,{
 	background-color: #9e9e9e;
+}
+.updateTable input{
+	width: 80%;
+}
+.updateTable th{
+	background:#6464ff; 
+}
+.updateTable td{
+	align : center;
 }
 .edit-buttons{
 	margin-bottom: 5px;

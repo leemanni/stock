@@ -22,13 +22,14 @@
 	
 	<%
 		boolean check = logInService.getInstance().checkLogin(vo);
-		//out.println(StocksService.getInstance().checkLogin(vo));
+		request.setAttribute("flag", check);
 		if(check){
-			pageContext.forward("stock.jsp");
+			response.sendRedirect("stock.jsp?job=select");
+			//pageContext.forward("stock.jsp");
 		}else{
-			request.setAttribute("flag", 1);
-			pageContext.forward("stock.jsp");
+			pageContext.forward("loginMain.jsp");
 		}
+		
 	%>
 	
 </body>

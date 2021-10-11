@@ -23,6 +23,7 @@ public class logInService {
 //		System.out.println("StocksService ==> checkLogin");
 		SqlSession mapper = MySession.getSession();
 		boolean correct = StocksDAO.getInstance().checkLogin(mapper, vo);
+//		System.out.println(correct);
 		mapper.close();
 		return correct;
 	}

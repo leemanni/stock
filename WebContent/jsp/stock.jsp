@@ -15,6 +15,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	// 작업의 종류
+	//boolean flag = Boolean.parseBoolean(request.getParameter("flag"));
 	String job = request.getParameter("job");
 	String name = "";
 	int ownStocks = 0;
@@ -24,7 +25,7 @@
 	
 	StocksService service = StocksService.getInstance();
 	StocksDAO dao = StocksDAO.getInstance();
-	
+	UserStockList stockList = new UserStockList();
 	// 작업의 종류에 따라 기능 분리!
 	if(job != null){
 		switch(job){
@@ -37,7 +38,6 @@
 				service.insert(vo);
 				break;
 			case "search":
-				UserStockList stockList = new UserStockList();
 				stockList.setStockList(service.selectList());
 				request.setAttribute("stockList", stockList);
 				pageContext.forward("stocksView.jsp");
@@ -46,14 +46,27 @@
 				name = request.getParameter("name");
 				service.delete(name);
 				break;
-			
-				
+			case "show":
+				name = request.getParameter("name");
+				stockList.setStockList(service.selectList());
+				request.setAttribute("stockList", stockList);
+				vo = service.getVO(name);
+				request.setAttribute("stock", vo);
+				break;
+			case "update":
+				name = request.getParameter("name");
+				ownStocks = Integer.parseInt(request.getParameter("ownStocks"));
+				p_price = Integer.parseInt(request.getParameter("pPrice"));
+				c_price = Integer.parseInt(request.getParameter("cPrice"));
+				vo = new UserStocksVO(name, ownStocks, p_price, c_price);
+				service.update(vo);
+				break;
 		}
 	}
-	UserStockList stockList = new UserStockList();
 	stockList.setStockList(service.selectList());
 	request.setAttribute("stockList", stockList);
 	pageContext.forward("stocksView.jsp");
+	
 	
 %>
 </body>

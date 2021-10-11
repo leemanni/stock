@@ -110,9 +110,10 @@ public class UserStocksVO {
 
 	@Override
 	public String toString() {
-		return "UserStocksVO [name=" + name + ", ownStocks=" + ownStocks + ", p_price=" + p_price + ", c_price="
-				+ c_price + ", ratio=" + ratio + ", totalPrice=" + totalPrice + ", p_totalPrice=" + p_totalPrice + "]";
+		return "name=" + name + "&ownStocks=" + ownStocks + "&p_price=" + p_price + "&c_price="
+				+ c_price + "&ratio=" + ratio + "&totalPrice=" + totalPrice + "&p_totalPrice=" + p_totalPrice;
 	}
+
 
 	
 	

@@ -71,7 +71,25 @@ public class StocksService {
 		mapper.close();
 	}
 	
+	/**
+	 * @param name
+	 * DAO에 수정할 종목 1건을 가져오는 요청을 함
+	 * @return 
+	 */
+	public UserStocksVO getVO(String name) {
+		SqlSession mapper = MySession.getSession();
+		UserStocksVO vo =  StocksDAO.getInstance().getVO(mapper, name);
+//		System.out.println(vo);
+		mapper.close();
+		return vo;
+	}
 	
+	public void update(UserStocksVO vo) {
+		SqlSession mapper = MySession.getSession();
+		StocksDAO.getInstance().update(mapper, vo);
+		mapper.commit();
+		mapper.close();
+	}
 	
 	
 	

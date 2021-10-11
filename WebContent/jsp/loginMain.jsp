@@ -27,7 +27,7 @@
 				(맞춰 보세요)
 			</p>
 		</c:if>
-		<c:if test="${flag == 1}">
+		<c:if test="${flag == false}">
 			<p id="login-error">
 				아이디와 패스워드가 일치하지 않습니다.
 			</p>
