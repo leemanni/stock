@@ -37,59 +37,67 @@
 		 data-toggle="modal" data-target="#addAsset__modal">자산추가</button>
 	</div>
 	<span class="notice">종목 이름을 클릭하면 메모기능이 활성화 됩니다.</span>
-	<c:set var="stocksList" value="${stockList.stockList}"></c:set>
-	${stockList}
-	<table class="table table-hover">
-		<thead>
-			<tr>
-				<th>
-					종목명
-				</th>
-				<th>
-					<a class="writeMemo" data-toggle="modal" data-target="#writeMemo__modal">
-						ex) 삼성전자
-					</a>
-					
-				</th>
-				<th >
-					수량
-				</th>
-				<th>
-					ex ) 주
-				</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>
-					자산가치
-				</td>
-				<td>
-					₩돈 표시
-				</td>
-				<td>
-					구매가
-				</td>
-				<td>
-					₩돈 표시
-				</td>
-			</tr>
-			<tr>
-				<td>
-					수익
-				</td>
-				<td>
-					₩돈 표시(100%)
-				</td>
-				<td>
-					현재가
-				</td>
-				<td>
-					₩돈 표시
-				</td>
-			</tr>
-		</tbody>
-	</table>
+	<c:set var="list" value="${stockList.stockList}"/>
+	<c:if test="${list.size() > 0}">
+		<c:forEach var="vo" items="${list}">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>
+							종목명
+						</th>
+						<th>
+							<a class="writeMemo" data-toggle="modal" data-target="#writeMemo__modal">
+								${vo.name}
+							</a>
+							
+						</th>
+						<th >
+							수량
+						</th>
+						<th>
+							<fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.ownStocks}"/>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							자산가치
+						</td>
+						<td>
+							₩ 
+							<fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.totalPrice}"/>
+						</td>
+						<td>
+							구매가
+						</td>
+						<td>
+							₩ 
+							<fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.p_price}"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							수익
+						</td>
+						<td>
+							₩
+							<fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.totalPrice - vo.p_totalPrice}"/>
+							(<fmt:formatNumber type="percent" minIntegerDigits="1" pattern="###.00%" value="${vo.ratio}"/>)
+						</td>
+						<td>
+							현재가
+						</td>
+						<td>
+							₩ 
+							<fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.c_price}"/>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</c:forEach>
+	</c:if>
 </div>
 
 

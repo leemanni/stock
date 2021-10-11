@@ -13,35 +13,37 @@
 </head>
 <body>
 <%
+	request.setCharacterEncoding("UTF-8");
 	// 작업의 종류
 	String job = request.getParameter("job");
 	String name = "";
 	int ownStocks = 0;
-	int p_price =0;
-	int c_price =0;
+	int p_price = 0;
+	int c_price = 0;
 	UserStocksVO vo = null;
 	
 	StocksService service = StocksService.getInstance();
 	StocksDAO dao = StocksDAO.getInstance();
 	
 	// 작업의 종류에 따라 기능 분리!
-	switch(job){
-		case "insert":
-			name = request.getParameter("name");
-			ownStocks = Integer.parseInt(request.getParameter("ownStocks"));
-			p_price = Integer.parseInt(request.getParameter("pPrice"));
-			c_price = Integer.parseInt(request.getParameter("cPrice"));
-			vo = new UserStocksVO(name, ownStocks, p_price, c_price);
-			service.insert(vo);
-			UserStockList stockList = new UserStockList();
-			stockList.setStockList(service.selectList());
-			out.println(stockList.getStockList());
-			request.setAttribute("stockList", stockList);
-			pageContext.forward("stocksView.jsp");
-			break;
-			
-		// 앞으로 수정, 삭제 기능 구현해!
+	if(job != null){
+		switch(job){
+			case "insert":
+				name = request.getParameter("name");
+				ownStocks = Integer.parseInt(request.getParameter("ownStocks"));
+				p_price = Integer.parseInt(request.getParameter("pPrice"));
+				c_price = Integer.parseInt(request.getParameter("cPrice"));
+				vo = new UserStocksVO(name, ownStocks, p_price, c_price);
+				service.insert(vo);
+				break;
+				
+			// 앞으로 수정, 삭제 기능 구현해!
+		}
 	}
+	UserStockList stockList = new UserStockList();
+	stockList.setStockList(service.selectList());
+	request.setAttribute("stockList", stockList);
+	pageContext.forward("stocksView.jsp");
 	
 %>
 </body>

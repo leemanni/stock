@@ -24,10 +24,10 @@
 		boolean check = logInService.getInstance().checkLogin(vo);
 		//out.println(StocksService.getInstance().checkLogin(vo));
 		if(check){
-			pageContext.forward("stocksView.jsp");
+			pageContext.forward("stock.jsp");
 		}else{
 			request.setAttribute("flag", 1);
-			pageContext.forward("loginMain.jsp");
+			pageContext.forward("stock.jsp");
 		}
 	%>
 	

@@ -44,7 +44,7 @@ public class UserStockList {
 
 	private void calculate(ArrayList<UserStocksVO> stockList) {
 		for (UserStocksVO vo : stockList) {
-			totalAsset += vo.getTotaPrice();
+			totalAsset += vo.getTotalPrice();
 			p_totalAsset += vo.getP_totalPrice();
 			
 		}

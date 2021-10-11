@@ -32,10 +32,32 @@ public class StocksService {
 		mapper.close();
 	}
 	
+	/**
+	 * @return list
+	 * 개인별 총 자산을 가져와주기 위해 DAO 요청하는 메소드
+	 */
 	public ArrayList<UserStocksVO> selectList() {
 		SqlSession mapper = MySession.getSession();
 		ArrayList<UserStocksVO> list= StocksDAO.getInstance().selectList(mapper);
+		// 데이터 재 가공 => 수익률, 총 평가자산 계산
+		calculate(list);
 		mapper.close();
 		return list;
+	}
+	
+	
+	/**
+	 * @param list
+	 * selectList 메소드 실행중 DB에 없는 수익률, 자산가치 를 계산하기 위한 메소드
+	 */
+	private void calculate(ArrayList<UserStocksVO> list) {
+		for (int i = 0; i < list.size(); i++) {
+			UserStocksVO vo = new UserStocksVO(list.get(i).getName(),
+											   list.get(i).getOwnStocks(),
+											   list.get(i).getP_price(),
+											   list.get(i).getC_price()
+			);
+			list.set(i, vo);
+		}
 	}
 }

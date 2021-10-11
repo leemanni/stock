@@ -11,7 +11,7 @@ public class UserStocksVO {
 	private int c_price;	// 현재 가격
 	private float ratio;		// 수익률(DB x)
 	private int totalPrice;	// 자산가치(DB x)
-	private int p_totalPrice;	// 자산가치(DB x)
+	private int p_totalPrice;	// 구매기준 자산가치(DB x)
 	
 	
 	public UserStocksVO() {;}
@@ -88,13 +88,13 @@ public class UserStocksVO {
 	}
 
 
-	public int getTotaPrice() {
+	public int getTotalPrice() {
 		return totalPrice;
 	}
 
 
-	public void setTotaPrice(int totaPrice) {
-		this.totalPrice = totaPrice;
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 
 
@@ -111,8 +111,9 @@ public class UserStocksVO {
 	@Override
 	public String toString() {
 		return "UserStocksVO [name=" + name + ", ownStocks=" + ownStocks + ", p_price=" + p_price + ", c_price="
-				+ c_price + ", ratio=" + ratio + ", totaPrice=" + totalPrice + "]";
+				+ c_price + ", ratio=" + ratio + ", totalPrice=" + totalPrice + ", p_totalPrice=" + p_totalPrice + "]";
 	}
+
 	
 	
 	
