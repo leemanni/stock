@@ -43,7 +43,46 @@ public class StocksDAO {
 	}
 	
 	
+	/**
+	 * @param mapper
+	 * @return
+	 * 보유 자산 목록을 불러오는 메소드
+	 */
 	public ArrayList<UserStocksVO> selectList(SqlSession mapper) {
 		return (ArrayList<UserStocksVO>) mapper.selectList("selectList");
 	}
+	
+	
+	/**
+	 * @param name
+	 * 선택된 주식 1건을 삭제하는 메소드
+	 */
+	public void delete(SqlSession mapper, String name) {
+		System.out.println("StocksDAO==>delete");
+		mapper.delete("delete", name);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

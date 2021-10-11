@@ -32,15 +32,15 @@
 
 
 <div class="container">
-	<div class="pull-right">
+	<span class="notice">종목 이름을 클릭하면 메모기능이 활성화 됩니다.</span>
+	<div class="pull-right add-button">
 		<button type="button" class="btn btn-default addAsset-submit"
 		 data-toggle="modal" data-target="#addAsset__modal">자산추가</button>
 	</div>
-	<span class="notice">종목 이름을 클릭하면 메모기능이 활성화 됩니다.</span>
 	<c:set var="list" value="${stockList.stockList}"/>
 	<c:if test="${list.size() > 0}">
 		<c:forEach var="vo" items="${list}">
-			<table class="table table-hover">
+			<table class="table table-hover assetTable">
 				<thead>
 					<tr>
 						<th>
@@ -81,10 +81,12 @@
 						<td>
 							수익
 						</td>
-						<td>
+						<td class="ratio">
 							₩
+							<span>
 							<fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.totalPrice - vo.p_totalPrice}"/>
 							(<fmt:formatNumber type="percent" minIntegerDigits="1" pattern="###.00%" value="${vo.ratio}"/>)
+							</span>
 						</td>
 						<td>
 							현재가
@@ -96,7 +98,19 @@
 					</tr>
 				</tbody>
 			</table>
+			<div class="pull-right edit-buttons">
+				<button  type="button" class="btn btn-default update-btn" >수정</button>
+				<button  type="button" class="btn btn-default delete-btn" onclick="deleteFuntion('${vo.name}')">삭제</button>
+			</div>
 		</c:forEach>
+	</c:if>
+	<c:if test="${list.size() <= 0}">
+	<div>
+		<h1>
+			현재 저장된 자산이 없습니다. <br/>
+			자산을 새롭게 추가해보기는게 어떠세요?
+		</h1>
+	</div>
 	</c:if>
 </div>
 
@@ -114,6 +128,7 @@
 				</h4>
 			</div>
 			<form action="stock.jsp?" class="addAsset-form" method="post">
+			<!-- <form id="addAsset-form"> -->
 				<div class="modal-body addAsset-form">
 						<input type="text" class="form-control" required="required" name="name" placeholder="종목명"><br/>
 						<input type="text" class="form-control" required="required" name="ownStocks" placeholder="보유주식 수"><br/>
@@ -122,7 +137,7 @@
 						<input type="hidden" name="job" value="insert">
 				</div>
 				<div class="modal-footer">
-					<button id="addAsset-submit" type="submit" class="btn btn-deafault addAsset-submit" >
+					<button type="submit" class="btn btn-deafault addAsset-submit" >
 						자산추가
 					</button>
 					 <button type="button" class="btn btn-default" data-dismiss="modal" onclick="clickClose()">
@@ -183,5 +198,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="../js/bootstrap.js"></script>
 <script type="text/javascript" src="../js/formCheck.js"></script>
+<script type="text/javascript" src="../js/stocksView.js"></script>
+<!-- <script type="text/javascript" src="../js/buttonEvent.js"></script> -->
 </body>
 </html>

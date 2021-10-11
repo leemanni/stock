@@ -36,8 +36,18 @@
 				vo = new UserStocksVO(name, ownStocks, p_price, c_price);
 				service.insert(vo);
 				break;
+			case "search":
+				UserStockList stockList = new UserStockList();
+				stockList.setStockList(service.selectList());
+				request.setAttribute("stockList", stockList);
+				pageContext.forward("stocksView.jsp");
+				break;
+			case "delete":
+				name = request.getParameter("name");
+				service.delete(name);
+				break;
+			
 				
-			// 앞으로 수정, 삭제 기능 구현해!
 		}
 	}
 	UserStockList stockList = new UserStockList();

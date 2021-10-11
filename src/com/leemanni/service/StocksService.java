@@ -45,7 +45,6 @@ public class StocksService {
 		return list;
 	}
 	
-	
 	/**
 	 * @param list
 	 * selectList 메소드 실행중 DB에 없는 수익률, 자산가치 를 계산하기 위한 메소드
@@ -60,4 +59,35 @@ public class StocksService {
 			list.set(i, vo);
 		}
 	}
+	
+	/**
+	 * @param name
+	 * 선택된 종목 1건을 삭제하는 요청을 DAO 에 하는 메소드
+	 */
+	public void delete(String name) {
+		SqlSession mapper = MySession.getSession();
+		StocksDAO.getInstance().delete(mapper, name);
+		mapper.commit();
+		mapper.close();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

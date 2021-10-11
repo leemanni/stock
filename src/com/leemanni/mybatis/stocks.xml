@@ -9,6 +9,11 @@
 	<select id="selectList" resultType="vo">
 		select * from userstocks order by name asc
 	</select>
+	
+	<delete id="delete" parameterType="String">
+		delete from userstocks where name = #{name}
+	</delete>
+	
 </mapper>
 
 
